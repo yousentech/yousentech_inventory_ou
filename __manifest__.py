@@ -20,11 +20,9 @@
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
+        # 'security/ir.model.access.csv',
         'security/security.xml',
       
-        'views/operation_unit_views.xml',
-        'views/users.xml',
         'views/views.xml',
  
 
