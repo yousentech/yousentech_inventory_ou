@@ -22,7 +22,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
         <field name="arch" type="xml">
             <xpath expr = "//field[@name = 'company_id']" position="after">
-                    <field name="operation_unit_id"  options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,'no_create': True}"/>
+                    <field name="operation_unit_id"  optional="hide" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,'no_create': True}"/>
             </xpath>
 
         </field>
@@ -34,7 +34,7 @@
         <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
         <field name="arch" type="xml">
             <xpath expr = "//field[@name = 'company_id']" position="after">
-                    <field name="operation_unit_id"  options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,'no_create': True}"/>
+                    <field name="operation_unit_id"   optional="hide" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,'no_create': True}"/>
             </xpath>
 
         </field>
@@ -86,7 +86,7 @@
         <field name="inherit_id" ref="stock.vpicktree"/>
         <field name="arch" type="xml">
             <xpath expr = "//field[@name = 'company_id']" position="after">
-                <field name="operation_unit_id"  options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,'no_create': True}"/>
+                <field name="operation_unit_id"  optional="hide" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,'no_create': True}"/>
             </xpath>
         </field>
     </record>
