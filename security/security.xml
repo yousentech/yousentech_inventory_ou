@@ -3,16 +3,6 @@
 	<data>
 
 
-	    
-
-        <record id="rule_sale_order_ou" model="ir.rule">
-			<field name="name">Sale Order OU Rule</field>
-			<field name="model_id" ref="sale.model_sale_order"/>
-			<field name="domain_force">
-				['|',('operation_unit_id','=', False),('operation_unit_id', 'in', user.ou_config_ids.allowed_ou_ids.ids)]
-			</field>
-		</record>
-
 		<record id="rule_purchase_order_ou" model="ir.rule">
 			<field name="name">Purchase Order OU Rule</field>
 			<field name="model_id" ref="purchase.model_purchase_order"/>
@@ -28,21 +18,6 @@
 				['|',('operation_unit_id','=', False),('operation_unit_id', 'in', user.ou_config_ids.allowed_ou_ids.ids)]
 			</field>
 		</record>
-		<record id="rule_account_move_ou" model="ir.rule">
-			<field name="name">account move OU Rule</field>
-			<field name="model_id" ref="account.model_account_move"/>
-			<field name="domain_force">
-				['|',('operation_unit_id','=', False),('operation_unit_id', 'in', user.ou_config_ids.allowed_ou_ids.ids)]
-			</field>
-		</record>
-
-		<record id="rule_account_payment_ou" model="ir.rule">
-			<field name="name">account_payment OU Rule</field>
-			<field name="model_id" ref="account.model_account_payment"/>
-			<field name="domain_force">
-				['|',('operation_unit_id','=', False),('operation_unit_id', 'in', user.ou_config_ids.allowed_ou_ids.ids)]
-			</field>
-		</record>
-
+	
     </data>
 </odoo>

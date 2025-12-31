@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'yousentech_invoicing_ou',
+    'name': 'yousentech_inventory_ou',
 	'version': '17.0.1.0.0',
-	'summary': 'yousentech_invoicing_ou',
+	'summary': 'yousentech_inventory_ou',
 	'category': 'Tools',
 	'author': 'Developers team',
 	'maintainer': 'qimamhd-tech Techno Solutions',
