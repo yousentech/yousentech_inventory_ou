@@ -16,7 +16,7 @@
    
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account','purchase','sale','stock'],
+    'depends': ['base','account','purchase','sale','stock','yousentech_invoicing_ou'],
 
     # always loaded
     'data': [
