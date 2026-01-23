@@ -130,7 +130,7 @@ class PurchaseOrder(models.Model):
                 pickings.move_ids_without_package.write({
                     'operation_unit_id': order.operation_unit_id.id
                 })
-                for layer in  pickings.move_ids_without_package.stock_valuation_layer_ids
-                layer.account_move_id.write({'operation_unit_id': order.operation_unit_id.id})
+                for layer in  pickings.move_ids_without_package.stock_valuation_layer_ids:
+                    layer.account_move_id.write({'operation_unit_id': order.operation_unit_id.id})
 
         return res
