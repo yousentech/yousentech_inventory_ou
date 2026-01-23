@@ -182,6 +182,11 @@ class StockMove(models.Model):
     def _get_new_picking_values(self):
         vals = super()._get_new_picking_values()
 
+        # 🔹 إذا الشحنة الجديدة ناتجة عن شحنة سابقة
+        if self.picking_id and self.picking_id.operation_unit_id:
+            vals['operation_unit_id'] = self.picking_id.operation_unit_id.id
+            return vals
+
         # من أمر البيع
         if self.sale_line_id and self.sale_line_id.order_id.operation_unit_id:
             vals['operation_unit_id'] = self.sale_line_id.order_id.operation_unit_id.id
