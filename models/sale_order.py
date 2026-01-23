@@ -10,7 +10,7 @@ class saleOrder(models.Model):
     _inherit = 'sale.order' 
 
 
-   def write(self, vals):
+    def write(self, vals):
         res = super().write(vals)
 
         if 'operation_unit_id' in vals:
