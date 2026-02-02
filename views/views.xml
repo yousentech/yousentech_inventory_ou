@@ -2,6 +2,32 @@
 <odoo>
      
    
+    <!-- =================== Account Move (Invoices / Bills) =================== -->
+    <record id="view_inventory_account_move_form_ou" model="ir.ui.view">
+        <field name="name">inventory.account.move.form.ou</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+             
+                <xpath expr = "//group[@id = 'header_left_group']" position="inside">
+                   
+                    <field name="from_other_order" invisible="1"/>
+                    <field name="allow_modify_ou_flag" invisible="1"/>
+
+             
+                </xpath>
+                  <xpath expr="//field[@name='operation_unit_id']" position="attributes">
+                    
+                        <attribute name="readonly">not allow_modify_ou_flag or payment_id != False or from_other_order</attribute>
+                        <attribute name="force_save">1</attribute>
+                        
+                    </xpath>
+
+                 
+
+
+        </field>
+    </record>
 
     <!-- =================== Purchase Order =================== -->
     <record id="view_purchase_order_form_ou" model="ir.ui.view">

@@ -37,4 +37,42 @@ class AccountMove(models.Model):
                 raise ValidationError(
                     _('You cannot mix multiple Operation Units in one invoice.')
                 )
- 
+    
+    from_other_order = fields.Boolean(
+        compute='_compute_from_other_order',
+     )
+
+    @api.depends('invoice_line_ids')
+    def _compute_from_other_order(self):
+        for move in self:
+            is_exsiting_sale_field = self.env['ir.model.fields'].sudo().search(
+                [('name', '=', 'sale_line_ids'), ('model', '=', 'account.move.line')])
+            is_exsiting_purchase_field = self.env['ir.model.fields'].sudo().search(
+                [('name', '=', 'purchase_line_id'), ('model', '=', 'account.move.line')])
+            is_exsiting_stock_field = self.env['ir.model.fields'].sudo().search(
+                [('name', '=', 'stock_valuation_layer_ids'), ('model', '=', 'account.move.line')])
+            from_sale_order=False
+            from_purch_order=False
+            from_stock_order=False
+            if is_exsiting_sale_field:
+                from_sale_order = bool(move.invoice_line_ids.mapped('sale_line_ids.order_id'))
+                print("from_sale_order",from_sale_order)
+
+            if is_exsiting_purchase_field:
+                from_purch_order = bool(move.invoice_line_ids.mapped('purchase_line_id.order_id'))
+                print("from_purch_order",from_purch_order)
+
+            if is_exsiting_stock_field:
+                from_stock_order = bool(move.stock_valuation_layer_ids)
+                print("from_stock_order",from_stock_order)
+
+            print("from_stock_order",from_stock_order)
+            print("from_purch_order",from_purch_order)
+            print("from_sale_order",from_sale_order)
+
+            if from_sale_order or from_purch_order or from_stock_order:
+                move.from_other_order = True
+        
+            else:
+                move.from_other_order =  False
+
