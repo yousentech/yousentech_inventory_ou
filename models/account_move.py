@@ -6,7 +6,6 @@ from datetime import datetime
 class AccountMove(models.Model):
     _inherit ='account.move'
  
-   
     @api.constrains('invoice_line_ids', 'operation_unit_id')
     def _check_single_ou(self):
         for move in self:
@@ -35,8 +34,10 @@ class AccountMove(models.Model):
 
             if len(ous) > 1:
                 raise ValidationError(
-                    _('You cannot mix multiple Operation Units in one invoice. move[%s] in move line [%s] in sale [%s] in purchase [%s]' %())
+                    _('You cannot mix multiple Operation Units in one invoice. move[%s] in sale [%s]  in purchase [%s]' % (move.operation_unit_id.name, move.invoice_line_ids.sale_line_ids.order_id.operation_unit_id.name, move.invoice_line_ids.purchase_line_id.order_id.operation_unit_id.name))
                 )
+
+        return super()._check_single_ou()
      
     def _compute_from_other_order(self):
         for move in self:
