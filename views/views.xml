@@ -13,19 +13,11 @@
                    
                     <field name="from_other_order" invisible="1"/>
                     <field name="allow_modify_ou_flag" invisible="1"/>
-
-             
                 </xpath>
-                  <xpath expr="//field[@name='operation_unit_id']" position="attributes">
-                    
+                <xpath expr="//field[@name='operation_unit_id']" position="attributes">
                         <attribute name="readonly">not allow_modify_ou_flag or payment_id != False or from_other_order</attribute>
                         <attribute name="force_save">1</attribute>
-                        
-                    </xpath>
-
-                 
-
-
+                </xpath>
         </field>
     </record>
 
