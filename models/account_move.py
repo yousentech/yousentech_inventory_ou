@@ -6,7 +6,7 @@ from datetime import datetime
 class AccountMove(models.Model):
     _inherit ='account.move'
  
-    @api.constrains('invoice_line_ids', 'operation_unit_id')
+    # @api.constrains('invoice_line_ids', 'operation_unit_id')
     def _check_single_ou(self):
         for move in self:
             ous = self.env['operation.unit']
@@ -41,6 +41,8 @@ class AccountMove(models.Model):
      
     def _compute_from_other_order(self):
         for move in self:
+
+            res = super()._compute_from_other_order()
             is_exsiting_sale_field = self.env['ir.model.fields'].sudo().search(
                 [('name', '=', 'sale_line_ids'), ('model', '=', 'account.move.line')])
             is_exsiting_purchase_field = self.env['ir.model.fields'].sudo().search(
@@ -62,8 +64,5 @@ class AccountMove(models.Model):
           
             if from_sale_order or from_purch_order or from_stock_order:
                 move.from_other_order = True
-        
-            else:
-                move.from_other_order =  False
-
-            return super()._compute_from_other_order()
+         
+            return res
