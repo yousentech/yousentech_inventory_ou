@@ -13,7 +13,7 @@ class StockPicking(models.Model):
         'operation.unit',
         readonly=True,
        
-        copy=False
+        copy=False,domain=[('share_ou','=',False)]
     )
     def _is_return_picking(self):
         self.ensure_one()
@@ -175,7 +175,7 @@ class StockMove(models.Model):
         'operation.unit',
         readonly=True,
        
-        copy=False
+        copy=False,domain=[('share_ou','=',False)]
     )
 
 
